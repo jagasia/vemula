@@ -1,0 +1,695 @@
+10-Apr-2024	Wednesday	Day #2
+Logical Operators: AND, OR, NOT, XOR			
+-----------------------------------------------
+what is XOR?
+	Returns TRUE only if both are not SAME
+	TRUE XOR FALSE	=	TRUE
+	FALSE XOR TRUE	=	TRUE
+	TRUE XOR TRUE	=	FALSE
+	FALSE XOR FALSE	=	FALSE
+
+What is a fibonacci series?
+	Addition of 1st 2 numbers becomes the 3rd number and repeat the same
+
+x
+y
+x+y
+y+(x+y)
+(x+y)+y+(x+y)
+
+what is the first number in fibonacci?
+	0
+next number is
+	1
+
+0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+144
+
+PRINT X
+PRINT Y
+X=Y
+Y=X+Y
+
+X=0
+Y=1
+Z=X+Y
+
+X=Y
+Y=Z
+
+To make this algorithm/ flowchart as finite, we ask user to decide
+	Fibonacci series until which number?
+		then you need to check if the series number is > than input then exit
+	or
+	Fibonacci series of how many numbers?
+		then you need a counter.
+
+Task:
+www.lucidchart.com
+Intelligent Diagramming | Lucidchart
+
+Sign up to lucid chart (if not already).
+login to Lucid chart and 
+Draw a flow chart for bubble sort algorithm.
+
+Draw a flow chart for insertion sort algorithm.
+--------------------------------
+Searching algorithms:
+--------------------------------
+
+is
+data[i] = item
+?
+
+Linear search:
+	start searching from the first element
+	and continue to search until
+		the search item is found
+		or
+		the end of the list is reached
+
+I give you time to complete these flow charts:
+
+1) Fibonacci series flow chart
+2) Bubble sort flow chart
+3) Insertion sort flow chart
+4) Linear search flow chart
+
+----------------------------------------------
+Binary search.
+We have already discussed this in previous session.
+
+Task:
+
+Now, we have to draw flowchart for binary search
+in lucid chart.
+
+----------------------------------
+Whenever an algorithm uses recursion,
+i would recommend to find another algorithm that solve the same problem WITHOUT USING Recursion.
+Why I dont like recursion?
+	stack overlow
+
+Suppose, I ask you the route to reach a place.
+	now a days we use google map.
+	if we dont have that facility, we will ask someone to help us with the route.
+	that person says like this:
+		to some extent, we will be able to grasp the route. But there is a limitation.
+		all together, we cannot remember
+		but when it comes to google map, we feel comfortable. WHY?
+			because, the google map, tells you only one instruction at a time.
+			in 600 meters, take left
+			in 400 meters, take sharp right
+			now, take U turn
+		like this, it is telling one by one.
+
+that is the difference between recursion and non recursion (loop)
+
+recursion, push to stack
+non recursion, is like queue (not even queue. queue also can store so many instructions in itself)
+	one instruction -> you follow then remove that instruction from the queue
+	
+
+Lets take the example of Binary Search tree:
+	how do we traverse a binary tree?
+		Traverse means, visiting every node of the tree.
+	3 traversal techniques:
+		in order
+		pre order
+		post order
+
+In Order:
+	left 
+	root
+	right
+
+Pre Order:
+	root
+	left
+	right
+
+Post Order
+	left
+	right
+	root
+
+All these are done using recursion:
+-----------------------------------------------
+push the nodes to the stack until we reach the leaf node
+once we reach the leaf node, we start poping the nodes and display them
+
+
+
+1 as left
+left root right
+
+final output:
+1
+3
+4
+6
+7
+8
+10
+13
+14
+
+in order traversal visits the binary search tree nodes 
+in ascending order.
+
+inorder(left)
+inorder(root)
+inorder(right)
+
+preorder(root)
+preorder(left)
+preorder(right)
+
+postorder(left)
+postorder(right)
+postorder(root)
+
+
+Recursion is making the algorithm worst when the height of the tree is huge.
+Stack overflow. Because, the root nodes are pushed to stack until the leaf node is reached.
+
+So, how can we avoid recursion while 
+traversing a binary search tree?
+
+Without recursion, how to traverse a binary search tree?
+	we need to do some change in the binary search tree.
+	in that case, the name of the tree will become "Threaded binary search tree"
+
+Threaded binary search tree:
+	every node, contains reference to its in order successor
+
+Node in a tree:
+	LEFT
+	RIGHT
+	VALUE
+	INORDERSUCCESSOR
+
+
+
+Factorial
+-------------
+	factorial of 100
+
+		range of a variable
+
+		long
+Finding factorial of a number without using recursion
+
+input n
+set factorial=1
+for loop from n to 1	step -1
+	factorial *= n
+
+this will be sufficient
+
+Task:
+I want to list the sorting algorithms
+and their order of growth in Big O notation.
+
+
+Graph:
+----------
+Vertex and Edge
+Vertices and Edges
+
+Chennai	->	Hyderabad
+		     |
+		     V
+
+	<-	Bengaluru
+
+
+
+
+first we need created Vertices
+and then create edges between vertices. We can add some value to these edges.
+
+Chennai to Hyderabad	=	750 kms
+Hyderabad to Bengaluru	=	580 kms
+Bengaluru to Chennai	=	350 kms
+
+i want to go from
+	chennai to hyderabad via bengaluru
+
+		350 + 580	=	930
+
+	chennai to hyderabad	750
+
+
+What is the shortest route from 1 to 5?
+route 1:
+1 -> 2 -> 3 -> 5
+8+7+14	=	29
+route 2:
+1 -> 2 -> 5
+8+4	=	12	BEST ROUTE
+route 3:
+1 -> 2 -> 8 -> 6 -> 5
+8+2+6+2	=	18
+route 4:
+1 -> 7 -> 6 -> 5
+11+1+2	=	14
+route 5:
+1 -> 0 -> 7 -> 6 -> 5
+4+8+1+2	=	15
+
+
+What is the difference between BFS and DFS in graph?
+[12:20] Ajay
+BFS uses the queue to keep track of the next location that it should visit.
+[12:20] Komal Shivaji Londhe (Unverified)
+BFS works on the concept of FIFO (First In First Out). 
+
+DFS works on the concept of LIFO (Last In First Out).
+
+BFS is more suitable for searching vertices closer to the given source.	
+
+DFS is more suitable when there are solutions away from source.
+[12:21] Ajay
+Dfs uses the stack to keep track of the next location that it should visit
+
+BFS uses Queue:
+
+Queue:
+	3	5
+
+1 comes out.
+another queue
+	1	2	8	6	5
+
+2 comes out
+	2	8	6	5
+	2	3	5
+
+
+3 comes out
+	
+-------------------------
+Hash Table
+----------------
+	what are the columns in hash table?
+		Key	Offset
+
+In java we have a datastructure called hashtable
+	Hashtable
+
+Key is a set. Set means, does not allow duplicates
+
+key	value
+1	India
+2	Australia
+3	Japan
+3	China		Japan is replaced by China
+null	Argentina
+null	USA		Argentina is replaced by USA
+
+values can be null.
+can key be null?????????
+	yes, one null is allowed
+	second null means duplicate.
+
+RDBMS
+UNIQUE constraint allows NULL. How many NULLs allowed?		any number of NULLs allowed.
+PRIMARY KEY does not allow NULL
+
+
+
+
+import java.util.*;
+public class App12
+{
+	
+	public static void main(String args[])
+	{
+		HashMap<Integer, String> map=new HashMap<>();
+		map.put(null,"Japan");
+		map.put(null,"China");
+		System.out.println(map);
+	}
+}
+
+
+
+D:\Jag\wipro\Apr2024>java App12
+{null=Japan}
+
+D:\Jag\wipro\Apr2024>javac App12.java
+
+D:\Jag\wipro\Apr2024>java App12
+{null=China}
+
+D:\Jag\wipro\Apr2024>
+
+
+
+
+-- CREATE TABLE DUMMY
+-- (
+-- SNO INT unique,
+-- NAME VARCHAR(20)
+-- );
+
+INSERT INTO DUMMY VALUES (NULL, 'China'); 
+
+select * from dummy;
+
+
+(null)	Japan
+(null)	China
+
+Entry
+	key
+	value
+
+import java.util.Hashtable;
+
+public class App {
+
+	public static void main(String[] args) {
+		Hashtable<Integer, String> countries=new Hashtable<>();
+		countries.put(1, "India");
+		countries.put(2, "Pakistan");
+		countries.put(3, "Japan");
+		countries.put(3, "China");
+		
+		System.out.println(countries);
+	}
+
+}
+
+
+{3=China, 2=Pakistan, 1=India}
+
+
+Hashing
+Collision
+Rehashing
+Bucket hashing
+these concepts are algo & ds concepts to learn in hashing chapter.
+
+-------------------------------------------------------------------
+Advanced Sorting and Searching			
+Merge Sort, Quick Sort, and Heap Sort: Concepts and Pseudocode			
+
+Merge sort:
+----------------
+	What is Merge sort?
+		best sorting algorith
+
+
+
+merge
+	we should divide the list into multiple sorted list.
+
+51
+40
+30
+25
+45
+61
+54
+70
+33
+59
+
+this is a list of random numbers.
+Sorting this list using merge sort.
+
+there are 10 elements in this list.
+if you split this into 10 sub lists.
+Then each sub list will contain, 1 element.
+Now, i call, all my sub lists contain sorted manner.
+
+now, merge the sub lists. So that 10 sub lists become 5 sub lists.
+
+40
+51
+
+25
+30
+
+45
+61
+
+54
+70
+
+33
+59
+
+can you say, we have 5 sub lists and all are in sorted manner
+
+25
+30
+40
+51
+
+33
+45
+54
+59
+61
+70
+
+
+now, we have 3 sub lists, in sorted manner
+
+25
+30
+33
+40
+51
+45
+54
+59
+61
+70
+
+finally, we have sorted the large list
+
+divide-and-conquer approach is used to sort this.
+
+1,2,3,55,45,78,79,80
+
+1,2,3,45,55,78,79,80
+
+Efficiency of merge sort algorithm is
+very high, when the list is almost already sorted.
+
+
+Complexity Analysis of Merge Sort:
+Time Complexity:
+
+Best Case: O(n log n), When the array is already sorted or nearly sorted.
+Average Case: O(n log n), When the array is randomly ordered.
+Worst Case: O(n log n), When the array is sorted in reverse order.
+Space Complexity: O(n), Additional space is required for the temporary array used during merging.
+
+Advantages of Merge Sort:
+Stability: Merge sort is a stable sorting algorithm, which means it maintains the relative order of equal elements in the input array.
+Guaranteed worst-case performance: Merge sort has a worst-case time complexity of O(N logN), which means it performs well even on large datasets.
+Simple to implement: The divide-and-conquer approach is straightforward.
+Disadvantage of Merge Sort:
+Space complexity: Merge sort requires additional memory to store the merged sub-arrays during the sorting process. 
+Not in-place: Merge sort is not an in-place sorting algorithm, which means it requires additional memory to store the sorted data. This can be a disadvantage in applications where memory usage is a concern.
+----------------------------------------------------------------
+Quick Sort
+---------------
+Task:
+	Identify what is quick sort
+	how it is implemented
+	and also its Order or growth,
+	advantages and disadvantages.
+
+
+Quick sort uses a pivot to divide the list into 2
+
+	10, 20 ,30, 55, 40, 50, 60
+
+now, the pivot is position betwen 30 and 55
+because, the list is already sorted upto 30
+
+10,20,30		55,40,50,60
+
+some times, the pivot is kept after the 1st element, when the list is not having any subset of sorted elements.
+some times, the pivot is kept after the last element, when the list already sorted.
+
+when we move elements from right side (unsorted) to left side (sorted), the elements are kept in such that, the left side is maintained in sorted manner.
+
+---------------------------
+Heap Sort:
+---------------
+Identify what is heap sort
+	Find the minimum element and keep it in the beginning of the list.
+
+51
+40
+30
+25
+45
+61
+54
+70
+33
+59
+
+after adding these elements to a binary search tree.
+if i do in order traversal. it will give me sorted list
+
+25
+30
+33
+40
+45
+54
+55
+59
+61
+70
+
+Jag Sort algorithm?
+	create a binary search tree and add the elements to the tree.
+Do an in order traversal. You will get sorted list.
+
+Trees:
+--------
+what are the types of trees?
+Binary Trees: A tree structure where each node has at most two children.
+Binary Search Trees (BST): A binary tree where the left child is less than the parent node, and the right child is greater.
+AVL Trees: Self-balancing binary search trees where the heights of the two child subtrees of any node differ by at most one.
+Red-Black Trees: Self-balancing binary search trees with constraints on coloring to maintain balance.
+Decision Trees: Used in decision analysis to model decisions and their possible consequences.
+Syntax Trees (Parse Trees): Represent the syntactic structure of sentences in programming languages or mathematical expressions.
+Expression Trees: Represent mathematical expressions in a tree-like structure.
+Trie (Prefix Tree): Used to store a dynamic set of strings with each node representing a common prefix.
+These types of trees are often used in algorithm design and analysis for various purposes, such as searching, sorting, and organizing data efficiently.
+
+
+Can we draw a binary search tree for the following list of values?
+
+10
+15
+25
+40
+60
+80
+
+the binary search tree looks like a linear data structure.
+the advantage of the binary search tree is lost here, because,
+	what is the advantage of any binary search tree?
+		when we search any element, the worst case, the number of comparison is equal to the height 			of the tree. 
+		But since the height of the tree is equal to length of the list.
+
+	its worst case is equal to linear search algorithm
+
+A tree is at its best only when the height is minimum
+
+For 6 elements, the height of the tree is 6. Is very poor.
+After rotations, the height of the tree is maintain at 3.
+a height balance tree, should be in such a way that
+any node should contain left and right totally the difference is -1 or 0 or 1
+
+Hashing
+------------
+Key
+	an object can have many attributes. One of the attributes is taken as the key
+	like primary key in a table, every row has many values, but one of them is key value.
+
+Hashing function
+	one algorithm is required to find the offset (relative memory) based on the key.
+	it can be anything like modulo or division or taking a portion of the key etc.
+
+Hash Table
+	hash table must have atleast 2 columns
+	key - offset
+
+
+km	=	24%7	=	3
+
+
+1214989
+
+coleased chaining
+	all keys, whose hash value is same
+	are maintained as a linked list
+
+	so we find the bucket and start searching on that linked list.
+
+Activity:
+	Identify
+		Hashing
+		Collision
+		Re hashing
+
+other collision processing techniques.
+
+
+print the elements of an arraylist in reverse order
+
+if you write a loop to move from 1st to last
+and then print from last to first.
+
+This is the poorest approach, because, to
+print from last to first, why we need to move from 1st to last?
+
+--------------------------------
+Stack
+Queue
+	are disciplined linked list
+
+Stack is a linked list, which allows adding and removing elements are only one end, called as Top
+But 	we can create Stack and Queue using array also.
+
+----------------------------------------------------------------
+Prepare for MCQ on algorithms and datastructures
+
+Algorithms
+Flowcharts
+Pseudo codes
+
+all these 3 dimensions surround on
+Searching
+	linear
+	binary
+	hashing
+Sorting
+	bubble
+	selection
+	insertion
+	merge		fast		less time complexity
+	quick
+	heap sort
+Hashing
+	collision
+	addressing the collision issue
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
