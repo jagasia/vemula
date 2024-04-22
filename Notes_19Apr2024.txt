@@ -1,0 +1,521 @@
+19-Apr-2024
+-----------------
+Day #8
+---------
+We have covered few portions of Exception handling. (pending)
+	try-catch-finally
+	custom exception
+	throw vs throws
+We have covered few portions of Collections (pending)
+	Maps
+	ListIterator
+	Lambda
+	Stream API
+--------------------------------------
+Algorithm based problem solving handson.
+---------------------------------------
+Afternoon, during lunch break, i plan to go to Election poll booth for voting. 
+On that time, i will give you handson tasks.
+---------------------------------------
+Exception handling:
+-------------------------
+Handling exception provides the program an alternate path to continue, when exception occur at runtime.
+For each type of exception, it is better to have separate catch block rather than handling all type of exceptions in same catch block.
+
+x/y		if y is 0, then sun microsystem (oracle) knows that denominator cannot be 0. But in that case, what to do?
+		they don't want to decide. They want you to decide. So they raise exception. Allowing us to handle the exception.
+
+Exception propagation:
+	if exception occurred in sql statement execution in database, then it will propagate to the calling environment.
+	what is the calling environment, JDBC?
+		JDBC program can handle the exception
+			if not?	this jdbc program was called from a BO program. the unhandled exception from jdbc propagates to the calling env.
+				BO, can handle this exception. If not, it propagates to the calling environment, View.
+					View can handle the exception	(view can be angular/ react) they can handle the exception.
+
+
+
+
+throws vs try block
+---------------------------
+in any java method, we throw an exception or 
+call a method that throws an exception
+	we have 2 options
+		i) handle the exception using try block
+		ii) declare the exception using throws clause
+
+throws clause is used for checked exceptions
+unchecked exceptions do not demand you to handle or declare (compiler does not check them)
+
+try block
+	is called as a guarded section
+	any exception occurred in this block can be handled by the subsequent catch blocks 
+	
+catch block
+	always used with a try block
+	catch specifies the type of exceptions it handle
+	if any of such exceptions occurred in the try block, then this catch block will execute
+	there can be any number of catch blocks for a try	0 or more
+	can a try block exist without a catch block. Yes, if finally block is present.
+
+finally block
+	this block is used with a try block
+	whenever the program enters a try block, then finally block is executed for sure.
+	no matter, exception occurred or not. exception handled or not. But finally is done for sure.
+	comes after all the catch blocks.
+
+we can find another try inside a try
+another try inside a catch
+another try inside a finally
+-------------------------------------
+Custom exceptions
+	also called as User defined Exceptions
+
+If the amount is > 30k, then we need to raise exception.
+None of the pre defined exceptions are matching our requirement.
+So we are going define our exception class as
+	InvalidAmountException	
+	MaximumLimitExceededException
+
+if you see our employee class
+	id
+	name
+	department
+	salary
+
+do you remember we have setter methods for them
+
+in setter, we need to validate the data entered for these items
+and if they are invalid then we should throw appropriate exceptions here.
+
+
+public class InvalidIdException extends Exception	//checked exception
+{
+//whenever we throw an exception object, we can pass message as argument
+	//	throw new InvalidIdException("......");
+	public InvalidIdException(String message)
+	{
+		super(message);
+	}
+	
+	//they may handle using any of the super class
+	//		catch(Exception ex)	{		ex.getMessage();
+}
+
+
+
+
+
+
+What is the difference between
+	public class InvalidIdException extends Exception	//checked exception
+	public class InvalidNameException extends RuntimeException //unchecked
+
+extends Exception vs extends RuntimeException?
+	ans: checked vs unchecked
+
+
+public class Employee
+{
+	private Integer id;
+	private String name;
+	private String department;
+	private Integer salary;
+	
+	public Employee() {}
+
+	public Employee(Integer id, String name, String department, Integer salary) throws InvalidIdException {
+		super();
+//		this.id = id;
+		setId(id);
+//		this.name = name;
+		setName(name);
+		this.department = department;
+		this.salary = salary;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) throws InvalidIdException {
+		if(id<0)
+			throw new InvalidIdException("Id is invalid");
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		if(name.length()<1)
+			throw new InvalidNameException("Name is invalid");
+		this.name = name;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public Integer getSalary() {
+		return salary;
+	}
+
+	public void setSalary(Integer salary) {
+		this.salary = salary;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + getId() + ", name=" + name + ", department=" + department + ", salary=" + salary + "]";
+	}
+
+
+	
+}
+
+
+in our setter methods, we check for invalid data and throw appropriate messages.
+
+------------------------------
+who will handle these exceptions?
+	App.java
+
+
+public class App {
+
+	public static void main(String[] args) {
+		Employee raja=new Employee();
+		try {
+			raja.setId(-1);
+		} catch (InvalidIdException e) {
+			System.out.println(e.getMessage()+"\nreplacing id as 0");
+			try {
+				raja.setId(0);
+			} catch (InvalidIdException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+		try
+		{
+			raja.setName("");
+		}catch(InvalidNameException e)
+		{
+			System.out.println(e.getMessage()+"\nreplacing name as unknown");
+			raja.setName("unknown");
+		}
+		System.out.println(raja);
+	}
+
+}
+
+----------------------------
+Assignment of Exception handling
+----------------------------------------------
+Differentiating between various Set implementations.
+	HashSet
+		order is based on hashCode() and equals() method
+	TreeSet
+		it is based on SortedSet 
+		order is sorted based on Comparable or Comparator
+	LinkedHashSet
+		order is based on the insertion order
+
+Map interface
+	implemented by
+		HashMap
+		TreeMap
+		LinkedHashMap
+
+Map is a 2 dimensional data structure.
+	every element in the map is called as "Entry"
+	an Entry has "Key" and "Value"
+
+Map is not a collection. It is an application of collection
+	Key is a set
+	Key in HashMap is HashSet
+	Key in TreeMap is TreeSet
+	Key in LinkedHashMap is LinkedHashSet
+
+List and Set have some common methods like	
+	add() method
+but Map does not have add method at all. Instead it is
+	put() method
+
+put(key, value);
+
+get(key)	returns the value
+
+put method is used to
+	add an entry (or)
+	update an existing entry	(how?)	if the key is already found, then its value is updated
+
+put is the same method to add or update entry to the map.
+
+There is no iterator for map.
+	so what will we do?
+		there are many ways, we can iterate the elements of a Map.
+			i) get the keys as a set. and set supports iterator
+				Set<T> keys=map.keySet();		returns all keys as a Set
+				keys.iterator();
+	
+			ii) get the entries as a set
+				map.entrySet();		you will get set of entries. then use iterator
+
+		in both cases, you can use iterator or for each loop
+			inside the loop if you want to remove, then do not use for each loop. instead, use iterator.
+
+---------------------
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
+
+public class App {
+
+	public static void main(String[] args) {
+		Map<Integer, String> map=new TreeMap<>();
+		map.put(5, "Australia");
+		map.put(1, "India");
+		map.put(3, "Pakistan");
+		map.put(2, "Bangladesh");
+		map.put(7, "Sri lanka");
+		map.put(6, "Japan");		//add an entry
+		map.put(6, "China");		//update an entry
+		
+		for(Entry<Integer, String> e:map.entrySet())
+		{
+			System.out.println(e.getKey()+"\t"+e.getValue());
+		}
+	}
+
+}
+
+----------------------
+Challenge:
+Accept a sentence as input from the user.
+Display the character and their number of occurrance as output.
+
+sample input:
+	this sentence is typed by me now
+sample output:
+	t	3
+	h	1
+	i	2
+	s	2
+		6
+	e	5
+	n	3
+	c	1
+	y	2
+	p	1
+	d	1
+	b	1
+	m	1
+	o	1
+	w	1
+Hint:
+	use map to maintain, Character vs Integer	
+	Map<Character,Integer> map=new LinkedHashMap<>();
+
+LinkedHashMap maintains the key in LinkedHashSet way
+ie., in the same or of insertion.
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Scanner;
+
+public class App2 {
+
+	  public static void main(String[] args) {
+		  Scanner sc=new Scanner(System.in);
+		  String input=sc.nextLine();
+		  Map<Character, Integer> map=new LinkedHashMap<>();
+		  
+		  for(Character c : input.toCharArray())
+		  {
+			  //if c is already found in map, then increment the count 
+			  //if c is not found in the map, then it should be count as 1
+//			  Integer value = map.get(c);
+//			  if(value==null)
+//			  {
+//				  value=0;
+//			  }
+//			  value++;
+			  
+			  Integer count = map.getOrDefault(c, 0);
+			  count++;
+			  map.put(c, count);
+		  }
+		  
+		  for(Entry<Character, Integer> entry:map.entrySet())
+		  {
+			  System.out.println(entry.getKey()+"\t"+entry.getValue());
+		  }
+	  }
+
+}
+
+----------------------------
+Task:
+Java_Mock_11.docx
+	https://github.com/jagasia/wipro2/blob/jag/Java/Java_Mock_11.docx
+
+University - Requirement 6
+-----------------------------------
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Scanner;
+
+public class App {
+
+	public static void main(String[] args) throws ParseException {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the number of colleges:");
+		int noOfCollege=sc.nextInt();
+		List<College> list=new ArrayList<>();
+		for(int  i=0;i<noOfCollege;i++)
+		{
+			String detail = sc.nextLine();
+			if(detail.equals(""))
+				detail=sc.nextLine();
+			College college=College.createCollege(detail);
+			list.add(college);
+		}
+		Map<String, Integer> map = College.calculateLocationCount(list);
+		
+		System.out.format("%-15s %s\n","Location","Count");
+		for(Entry<String, Integer> e:map.entrySet())
+		{
+			System.out.format("%-15s %s\n",e.getKey(),e.getValue());
+		}
+		
+	}
+
+}
+
+
+------------------------
+Task:
+Mock 21 Requirement 6
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class App {
+
+	public static void main(String[] args) throws ParseException {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the number of purchases:");
+		int noOfPurchases=sc.nextInt();
+		List<Purchase> purchaseList=new ArrayList<Purchase>();
+		List<User> userList = User.prefill();
+		for(int i=0;i<noOfPurchases;i++)
+		{
+			String detail=sc.nextLine();
+			if(detail.equals(""))
+				detail=sc.nextLine();
+			String[] arr = detail.split(",");
+//			1,750,FIRST,05-06-2018,Rob
+			Purchase purchase=new Purchase();
+			purchase.setId(Integer.valueOf(arr[0]));
+			purchase.setPrice(Double.valueOf(arr[1]));
+			purchase.setCouponCode(arr[2]);
+			SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+			purchase.setPurchaseDate(sdf.parse(arr[3]));
+			String userName=arr[4];
+			//find user object using userName
+			for(User user: userList)
+			{
+				if(user.getName().equals(userName))
+				{
+					purchase.setUser(user);
+					user.getPurchaseList().add(purchase);
+				}
+			}
+			purchaseList.add(purchase);
+		}
+		System.out.println("Enter the month:");
+		String month=sc.next();
+		User result = User.getValuableUser(userList, month);
+		System.out.println("The valuable user of the month June is "+result.getName());
+		
+	}
+
+}
+----------------------
+use this app main coding
+remaining things you can do.
+
+Task:
+	Mock 21 req 6
+App.java is present in 
+	https://github.com/jagasia/ust1/blob/jag/java_programs/02-may-mock-21-req-6/src/App.java
+
+Break from 12:45 - 13:45
+
+
+Solution:
+https://github.com/jagasia/wipro2/tree/jag/Java/mock-21-req-6
+
+
+----------------
+Task:
+	Mock 30 req 6
+-----------------------------------
+One User Many Purchase
+
+1..M	User Purchase
+1..1	Purchase User
+
+Skeleton is uploaded in git:
+https://github.com/jagasia/wipro2/tree/jag/Java/mock-30-req-6
+ you need to complete the code in
+	UserScore file
+		static Map<String,UserScore> getTopPerformer(List<UserScore> scoreList)
+		{
+			return null;		//write your code here
+		}
+
+
+complete this part and run and check the test cases.
+------------------------------------------------------
+1,2,3,4,5,6,7,8
+boolean flag=false;
+if you remove an element inside for each loop, you ConcurrentModificationException
+
+it=list.iterator();
+while(it.hasNext())
+{
+	if(flag)
+		it.remove();
+	flag=!flag;
+
+1	flag=false
+2	flag=true		remove 2
+3	flag=false
+4	flag=true		remove 4
+	
+
+---------------------------------
+Lambda
+Stream API
+
+	Lambda provides quick implementation of functional interface
+	what is functional interface?
+
+	Stream API is used to work on collections.

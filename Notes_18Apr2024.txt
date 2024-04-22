@@ -1,0 +1,708 @@
+18-Apr-2024
+------------------
+day #7
+---------
+Polymorphism: Method Overloading and Overriding
+Organizing Code
+Packages: Creating and Using Packages
+Classpath: Understanding and Setting the Classpath
+Java Modules: Modular Programming in Java
+
+Complete these OOP concepts and will try to start Exception handling today.
+Take stock of Assignment completion. Today evening, we expect GIT credentials from RPS.
+-----------------------------------
+If you want a demo on how to set up git in Cloud lab and push content to git remote repository, you can ask me for demo.
+------------------------------------------
+GitLab 
+	username
+	password
+will be shared by RPS
+
+---------------------------
+Method Overloading
+Method Overriding
+	what is the difference between these 2?
+
+Method overloading
+	same method name but different signature.
+	both methods are in same class.
+
+
+class Parent{
+	public void method()
+	{
+		System.out.println("Parent method");
+	}
+}
+class Child extends Parent
+{
+	public void method()	//overriding
+	{
+		System.out.println("Child method");
+	}
+	public void method(int i)	//overloading
+	{
+		System.out.println("child method with arg");
+	}
+}
+public class App {
+
+	public static void main(String[] args) {
+		Child c=new Child();
+		c.method();
+	}
+
+}
+--------------------
+i HAVE given the rules of 
+overloading
+overriding
+in yesterday's notes.
+
+-----------------------
+There are many classes.
+a class has data and methods
+how we control the access of these members of the class.
+
+How default access specifier works?
+
+class Employee
+{
+	String department
+}
+
+department is having default access.	
+what is meant by default access?
+	no access specifier
+	and it is accessible from any class inside same package.
+
+so far, we created classes inside default package.
+lets create packages now.
+
+What is a package?
+	package is a group of classes and interfaces.
+
+Every class is stored in a file.
+Every package is a folder.
+java.util is a package
+then there is a folder called java
+and the util is a sub folder inside java folder.
+
+for every package, there will be a folder
+like a folder can contain subfolders, 
+a package can contain sub packages.
+
+in eclipse, it is easy to create packages.
+
+package name follows the convention:	
+	first portion is either com / org
+		company means 	com
+		organisation means	org
+	second portion is the name of the company/ organisation
+	third portion is the project name
+	fourth portion is the role of the package
+		model
+		view
+		controller
+		service
+		repository
+		controller
+		entity
+	
+
+	com.wipro.hrms
+
+We can create a package using
+	File -> New -> Package
+and then add classes inside the package.
+or
+
+While creating a class itself we can mention the package name.
+or
+
+After creating a class, we can introduce package also.
+	type
+		package com.wipro.hrms;
+
+and right click the error, move Employee.java to com.wipro.hrms package
+
+----------------------------
+You need to experiment by creating multiple packages
+and check the access of each member of a class.
+
+package com.wipro.hrms;
+
+import com.wipro.hrms.entity.Employee;
+
+public class ContractEmployee extends Employee 
+{
+	public static void main(String []args)
+	{
+		Employee emp=new Employee();
+		emp.id=1;			//public
+//		emp.name="Raja";	//protected	can be accessed from subclass
+//		emp.department="IT";//default	only accessible in same package
+//		emp.dateOfBirth=new Date();		//NOT accessible (private)
+		ContractEmployee ce=new ContractEmployee();
+		ce.name="Siva";	//protected		sub class of any package
+		ce.id=222;		//public
+		ce.department="ECE";	//default 	so not available in different package
+		
+				
+	}
+}
+
+
+
+Packages not only organize the code.
+They decide the access level of members of a class.
+
+in command prompt:
+how packages are created.
+	because, every package refers to a folder.
+	the compiled class will be inside the folder (of package name).
+
+
+if i compile a java program with package declaration in cmd prompt??????????
+	what should we do?	to create the folder and keep class files inside that folder.
+
+
+package com.upskillit.hrms.entity;
+public class College
+{
+}
+
+when i compile this program, i will use 
+	-d switch to create directory automatically in specified location
+	
+javac -d . College.java
+
+
+Task:
+------
+Java_Mock_21.docx
+	Food aggregator - Requirement 1
+
+
+what is a property of a class.
+	any non-public data member, with public getter or setter or both is a property.
+
+	if only setter is there, it is a write-only property
+	if only getter is there, it is read-only property
+	if both are there, it is read, write property
+	if both are not there, it is not a property
+
+--------------------------------------------------------------------------------
+Java Collections Framework and Generics
+Arrays: Declaration, Initialization, and Usage
+
+Limitations of array
+that leads to inventing new collections
+
+Collections have advantages over arrays.
+	i) we do not know the size of the collection when we create them.
+		array needs to know the size when it is created
+	ii) different type of collection and each have their own advantages.
+
+Collections can be created on Reference type only.
+Wrapper classes or any type BUT NOT PRIMITIVE TYPES
+
+List interface.		java.util package
+	this interface is implemented by lot of classes
+		ArrayList
+		LinkedList
+		Vector		(legacy class, means, old)	it is synchronized.
+
+Set interface		java.util package
+		HashSet
+		TreeSet
+		LinkedHashSet
+
+Map	is an application of collection.		Map is not collection.
+Map interface
+		HashMap
+		TreeMap
+		LinkedHashMap
+
+
+List
+	allows duplicates
+	is ordered
+	have index.	so we can have direct access to an element using its index
+	We can use Collections.sort() to sort a list
+
+Set
+	rejects duplicates. If we try to enter an element which is already present, then that attempt is rejected.
+	Order of Set is based on the type of the Set.
+		HashSet		order is based on hashCode and equals method
+		TreeSet		order is based on Comparable/ Comparator		is sorted.
+		LinkedHashSet	order is based on the order in which the elements are added. 	Similar to List
+
+Map
+	is 2 dimensional data structure, which has
+		Key - Value pair
+
+	Key is a set.		Means, Set
+		Key must be unique.
+		If duplicate key is found while putting an entry to the Map, then its value is updated.
+		Map does not reject duplicate key. It updates value when the key is duplicate
+		Map allows one entry where key is null.		Another entry with null key is considered duplicate and update the value.
+
+Iterator
+	is used to traverse/ visit every element of the List/ Set
+	is forward only 		
+	has only 3 methods
+		hasNext()		returns true, if any more element is available to iterate
+		next()		returns next element
+		remove()		removes the current element
+ListIterator
+	is used only with List type of collections
+	we can move forward/ backward using ListIterator.	
+	has additonal methods (apart from those 3 of Iterator)
+		hasPrevious()	returns true if any more element is available to iteratore
+		previous()		returns the previous element
+
+	List<Integer> marks=new ArrayList<>();
+		//left side of the declaration is List interface
+		//right side of the declaration is implementation of List interface
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class App {
+
+	public static void main(String[] args) {
+		List<Integer> marks=new ArrayList<>();
+		marks.add(20);
+		marks.add(50);
+		marks.add(15);
+		marks.add(60);
+		marks.add(35);
+		marks.add(40);
+		System.out.println(marks);
+	}
+
+}
+
+
+[20, 50, 15, 60, 35, 40]
+
+
+This proves that a List is ordered.
+Order is not ascending or descending order. It is the order in which the elements are added to the list.
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class App2 {
+	public static void main(String[] args) {
+		List<Integer> list = Arrays.asList(34,21,26,54,38,76,90,89);
+		Collections.sort(list);
+		System.out.println(list);
+	}
+}
+
+[21, 26, 34, 38, 54, 76, 89, 90]
+
+
+NOTE:
+	Collections.sort() does not work on Set or Map.
+	It works only on List.
+
+
+
+TreeSet is sorted.
+But you cannot use Collections.sort()
+This means, while adding elements to a TreeSet, the element is not always added at the end.
+	It is added in such a way, it is sorted.
+TreeSet does not allow altering the order later.
+
+List is ordered in the same way as added, means, it is adding elements at the end.
+	Later, we can sort list using Collections.sort()
+
+Some common methods found in most of the collections:
+	add()
+	add(index, object);
+	addAll()
+	contains()		boolean
+	remove(int)		remove at index
+		ex:
+			marks.remove(1);			//1 is primitive int, so it is considered as index
+	remove(obj)		remove that element
+		ex:
+			marks.remove(new Integer(1));		//new Integer(1) is object so it is considered as element
+
+
+How do you find an item from a list?
+	ArrayList<Integer> means,
+		contains method will return
+
+	ArrayList<College> means,
+		i) you may loop the collection and check if each college has the specific value or not
+		ii) override the equals method of College to check specific values match means equal
+			then create a College object with that specific value and use "contains" method
+
+----------------------------------------
+Java_Mock_11.docx
+	https://github.com/jagasia/wipro2/blob/jag/Java/Java_Mock_11.docx
+
+University - Requirement 2
+	Solve this now.
+
+-------------------------------
+Java_Mock_21.docx
+	https://github.com/jagasia/wipro2/blob/jag/Java
+Food aggregator - Requirement 3
+----------------------------------------
+
+As i already mentioned,
+	List can be sorted using
+		Collections.sort method
+Arrays.sort is used to sort an array. Similarly 
+Collections.sort method is used to sort a List	(but not Set)
+
+Collections.sort or Arrays.sort works only on types that are comparable.
+
+If you cannot compare 2 objects, then you cannot sort an array of that type of objects.
+
+ArrayList<Integer>
+	you know how to compare to Integers.
+	so you can sort this list.
+
+ArrayList<College>
+	how do you sort this list???????
+	If 2 colleges can be compared, then this list can be sorted.
+
+		Integer i=30;
+		Integer j=30;
+		System.out.println(i.compareTo(j));
+
+compareTo method returns
+	-1		i-j is negative means	i is smaller than j
+	0		
+	1
+
+
+Why Collections.sort works for Integer type list?
+	it is because, Integer class implements Comparable interface
+	and override, the "compareTo" method.
+
+public final class Integer extends Number
+        implements Comparable<Integer>, Constable, ConstantDesc {
+
+
+Most of the in-build types implement comparable interface.
+All wrapper classes
+String class
+Date class
+	all of these implements comparable interface
+
+But,
+If we create a class like Employee, 
+	then Employee class must implement Comparable interface
+	so that List<Employee> can be sorted using Collections.sort method
+
+
+4
+1,Raja,ECE,121212
+11,Abdul,CSE,121111
+8,John,ECE,132432
+7,Siva,CSE,111111
+
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class App4 {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int no=sc.nextInt();
+		List<Employee> empList=new ArrayList<>();
+		for(int i=0;i<no;i++)
+		{
+			String detail=sc.nextLine();
+			if(detail.equals(""))
+				detail=sc.nextLine();
+			String[] arr = detail.split(",");
+			Employee employee=new Employee(Integer.valueOf(arr[0]), arr[1], arr[2], Integer.valueOf(arr[3]));
+			empList.add(employee);
+		}
+		
+		Collections.sort(empList);
+		
+		for(Employee e:empList)
+			System.out.println(e);
+	}
+
+}
+
+
+Error:
+The method sort(List<T>) in the type Collections is not applicable for the arguments (List<Employee>)
+
+Employee does not implement Comparable, so List<Employee> cannot be sorted.
+
+
+2-3	is asc
+3-2	is desc
+
+
+Now, Employee class can implement Comparable and override the compareTo method.
+At run time, we sort the list of employees, in the order mentioned in the compareTo method.
+
+But have you seen websites, where you are provided with lot of sort options.
+sort by date
+sort by time
+sort by price
+sort by destination
+how at runtime, we are able to change the comparison?
+
+We can create additional classes that implements Comparator.
+
+Comparable
+Comparator
+
+import java.util.Comparator;
+
+public class EmployeeSalaryComparator implements Comparator<Employee>
+{
+
+	@Override
+	public int compare(Employee o1, Employee o2) {
+		//suppose if salary is primitive int type, then
+//		return o1.getSalary()-o2.getSalary();
+		return o1.getSalary().compareTo(o2.getSalary());
+	}
+
+}
+
+the above is used to sort by salary
+we can also create comparators to sort by name also, department also.
+
+----------------------------
+Task:
+	Java_Mock_11.docx
+
+University - Requirement 5
+
+https://github.com/jagasia/wipro2/blob/jag/Java/Java_Mock_11.docx
+
+Implement comparable and comparators to achieve this.
+
+Refer:
+	mock-11-req-2
+
+complete the code from the above project.
+
+[3:12 pm] Najuka Rajendra Tibhe
+ 
+Hi All - Please click on the link and fill feedback - 
+https://survey.zohopublic.com/zs/eXBT4R
+ 
+Mid session FB 1_24NAG0543_Jagdeeshwaran  _PCATJava_Wipro_18 Apr
+Your response would be greatly appreciated.
+-----------------------------
+Kindly complete the feedback.
+
+------------------------------------------------------------
+Set
+-----
+What is a Set?
+	Set is a collection of distinct objects.
+
+Set rejects duplicates
+Set maintains the elements in the order based on the type of set.
+HashSet
+	order is based on hashCode and equals methods
+TreeSet
+	order is based on Comparable or Comparator
+LinkedHashSet
+	order is same as the order of adding elements
+
+ListIterator does not work on Set
+Collections.sort does not work on Set
+
+
+
+
+6
+1,Raja,ECE,121212
+11,Abdul,CSE,121111
+7,Siva,CSE,111111
+8,John,ECE,132432
+8,John,ECE,132432
+7,Siva,CSE,111111
+
+	If i add these employees to HashSet, then How many elements will be added to HashSet?	6
+a) 6	CORRECT ANSWER		HashSet is not able to identify duplicates in Employee type...
+b) 4
+c) 5
+d) 3
+
+
+HashSet<Integer>	is able to identify duplicate
+hashset of any pre defined type is able to identify duplicate because,
+	that type class implements hashCode and equals method
+
+So, Employee class also must implement 
+	hashCode
+	equal
+tell me, When do you consider, 2 employees are duplicates???????
+	if 2 employees have same id, then they are duplicates.
+
+------------------------------
+TreeSet
+	then Employee should implement Comparable
+	or use Comparator
+	without either of this, 
+	a tree set will not allow adding employees to the set.
+
+
+HashSet
+	equals
+	hashCode
+
+TreeSet
+	Comparable/ Comparator
+
+	
+Assignments:
+------------------
+Day 4 and Day 5
+Task 1: Constructors
+Implement a Matrix class that has a constructor which initializes the dimensions of a matrix and a method to fill the matrix with values.
+
+Task 2: Inheritance
+Create a Shape class with a method area() and extend it with Circle and Rectangle classes overriding the area() method appropriately.
+
+Task 3: Packages/Classpath
+Create a package com.math.operations and include classes for various arithmetic operations. Demonstrate how to compile and run these using the classpath.
+
+--------------------------
+Exception Handling
+Exception Handling
+try-catch Blocks: Basic Exception Handling
+Creating Custom Exceptions: When and How to Create
+
+
+
+What is Exception?
+	during the execution of the program
+	abnormal event that disrupts the execution of the program
+	the program terminates abruptly
+
+All these are related to runtime.
+Exceptions are meant at runtime.
+But there are some exceptions which are checked by the compiler itself.
+
+public static void main(String[] args) throws ParseException {
+in the above line, do you notice ParseException
+
+public static College createCollege(String detail) throws ParseException
+	{
+//		IIT Madras,http.iitm.ac.in,7845612390, iit ,16,Tamil Nadu,15-12-1959 
+		String[] arr = detail.split(",");
+		College college=new College();
+		college.setName(arr[0]);
+		college.setWebsite(arr[1]);
+		college.setMobile(arr[2]);
+		college.setFounder(arr[3]);
+		college.setNumberOfDept(Integer.valueOf(arr[4]));
+		college.setLocation(arr[5]);
+		SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+		college.setStartingDate(sdf.parse(arr[6]));
+		return college;
+	}
+
+sdf.parse method throws this ParseException
+
+However good that we write a program, it is possible to get exceptions at runtime, which are beyond the control of the program.
+ex:
+	memory is not sufficient
+	File is delete by someone
+	Network failure
+	
+
+these are some example for situations which are beyond the control of the program.
+
+So, getting exceptions is normal. But unhandled exceptions disturb the users by terminating the program.
+
+Exception handling:
+--------------------------
+	Providing the program an alternate path to continue, during the exception
+
+Types of exception:
+	Checked Exceptions
+	Unchecked Exceptions
+
+Checked exceptions
+	are checked by the compiler.
+	compiler expects you to either
+		i) handle the exception (or)
+		ii) declare with throws clause
+	serious exception which cannot be ignored
+
+	Any class that is derived directly from Exception class or its sub class is a checked Exception
+		ex:
+			ParseException
+			InterruptedException			(Thread.sleep)
+			IOException
+
+Unchecked exceptions
+	are not checked by the compiler
+	they are meant for runtime
+	it may be handled or leave it as unhandled
+
+	Any class that is derived directly from RuntimeException or its sub class is an unchecked Exception
+		ex:
+			ArithmeticException	
+			ArrayIndexOutOfBoundsException
+			NumberFormatException
+			ConcurrentModificationException
+
+Why exception was introduced?
+	
+	Ajay is creating a class called "Bank"
+	and he creates a method called "withdraw"
+		now, there is a daily limit to withdraw
+class Bank
+{
+	public void withdraw(int amount)
+	{
+		if(amount>30000)
+		{
+			//this is wrong. But what to do in that case, Ajay cannot decide.
+			//those who call this method has to decide.		This is where exceptions are useful.
+			//Ajay throws Exception and expect Gayathri to handle the exception
+		}
+	}
+}
+
+Gayathri uses this class Bank
+
+
+To handle an exception, we can use
+	try block
+	catch block
+	finally block
+
+
+Object
+	Throwable
+		Error
+		Exception
+
+Error
+	cannot be handled using try-catch method
+Exception
+	can be handled using try-catch method
+
+Those who have completed the assignments can do this task:	(today's topic activity)
+Java_Mock_30
+	Learning Platform - Requirement 5
+https://github.com/jagasia/wipro2/blob/jag/Java/Java_Mock_30.docx

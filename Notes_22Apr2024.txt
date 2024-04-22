@@ -1,0 +1,54 @@
+Lambda
+Stream API
+22-Apr-2024
+Day #9
+----------------------
+I got git credentials for trainer.
+You all also got the git credentials.
+
+1) from local system, (you have done some assignments), 
+	how to move them to cloud lab.
+2) from cloud lab (only the git credentials they provided will work)	GitLab
+	we need to use the git credentials and push the assignments to the official gitlab
+
+	from cloud to gitlab
+		we use official git lab credentials
+
+Challeng 1:
+	moving my files from local system to cloud lab:
+
+https://cloud2.rpsconsulting.in/console/#/
+
+i have logged into cloud lab, using TR credentials.
+
+From local machine to Cloud lab
+	create a github repository
+	upload your files to this github
+
+Those who do not have git hub credentials
+	i) you signup to github.com free and login
+	ii) if you are comfortable with google drive, then
+		create a folder in google drive and download them in cloud lab.
+
+	
+
+using github to upload files from local system to github
+i) login to github.com
+ii) create a repository
+	click the + button "New Repository"
+	i have created a repository "vemula"
+iii) click the hyperlink "upload an existing file"
+iv) click "choose your files"
+	only 25 mb is allowed per attachment
+	do it one by one if the file size together is > 25 mb
+	click commit changes
+v) continue to add files using
+	Add file button
+		upload files
+
+in this way, you can upload lot of files one by one or together
+
+
+
+
+

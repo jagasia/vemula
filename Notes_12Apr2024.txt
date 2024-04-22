@@ -1,0 +1,1469 @@
+Java Environment Setup
+
+wipro
+ust
+empower
+adp	
+	in all these companies,
+	they provide official laptop
+	in that laptop	they have a software centre application
+	in that s/w centre, they provide all the necessary software.
+		from there we install those softwares in our official laptop
+
+	installations need admin permission 	(OS admin password)
+
+-----------------------------
+What is Java?
+	During 1990s, when c++ was in prime, a team in Sun Microsystems wanted to develop a new language, based on C, C++ and address the issues which were found in those 2 languages.
+They used almost the same syntax of C, C++
+some of the issues in those languages:
+	not Platform Independent
+	Pointer
+	Memory Leaks
+	Multiple Inheritance
+	no Garbage collection
+	and so on
+
+They named it as Oak	(name of a tree)
+then changed to Java		(name of coffee)
+
+logo of java looks like a cup of coffee.
+	
+
+Java
+	as a technology
+	as a platform		
+	as a language
+
+we learn java as a language.
+
+since this is a high level language (close to human)
+
+we need a translater that converts/ translates java language to machine language.
+
+when we discuss about compilation in java.
+
+C, C++ were not platform independent.	(means, when i compile a c program in 16 bit machine, i cannot run it in 32 bit machine).
+
+what happens when we compile a c / c++ program?
+	c language code is translated into machine language code.	(binary)
+	the problem is machine language is different for different type of machines.
+	when i say machine, i mean microprocessor (which is inside the CPU).
+	 µp can be 16 bit, 32 bit 64 bit and hence the operating systems now a days 64 bit
+	64-bit operating system, x64-based processor
+
+	binary / machine language is different
+
+what is the ascii value of A
+	A	=	65
+	
+when i say A in C lanugage, how it is translated into machine language
+
+	A	=	0100 0001				8 bit
+			0000 0000 0100 0001			16 bit
+			0000 0000 0000 0000 0000 0000 0100 0001	32 bit
+
+AB		=	0100 0001 0100 0010
+			0000 0000 0100 0001 0000 0000 0100 0010
+
+If i read information in 8 bit, it is different from how i read in 16 bit
+
+i write in 16 bit
+and i read in 32 bit	then it is found corrupted
+
+a program compiled in 32 bit machine
+cannot be executed in 64 bit machine
+
+turbo C
+gcc
+
+in windows, C language supports conio.h	which is not supported in linux
+
+C, C++ languages itself different for different platforms.
+
+How can we address this issue?
+	we want to compile java program only once, but it should run in different platforms without any issue.
+	how?
+	
+
+Does java run in any platform?
+	No
+	Wherever JVM is there, it will run.
+	Can anyone tell me, what are the platforms that support executing java?
+		Linux		(android, Ubuntu, RedHat, etc)
+		MacOS
+		Windows
+
+For a layman, Byte code and machine language are same.
+
+The compilation process in java, is split into 2 stages.
+
+Java -> English	(intermediate language)
+
+English -> Telugu
+English -> Tamil
+English -> Hindi
+Kannada
+Malayalam
+
+Stage 1:	(java compiler)
+	java -> byte code		(instead of machine language)
+	this byte code is an intermediate one
+
+Stage 2:	(jre JIT compiler)		Just In Time
+at run time, 
+	byte code -> machine language code (this happens in the machine where we run)
+	and execute the code.
+
+
+Java language is same for 
+	Linux
+	Windows
+	MacOS
+
+write once
+run in devices which has any of these OS and irrespective of 16 or 32 or 64 bit?
+	at runtime only, it will compile to machine language and run there itself.
+
+JDK vs JRE
+----------------
+	JDK	=	Java Development Kit
+	JRE	=	Java Runtime Environment
+
+JDK
+	is for programmer
+	to compile java code
+	also has JRE
+
+JRE
+	is for running the compiled java class
+
+
+JRE is used to run. Cannot compile.
+JDK has both java.exe and javac.exe
+
+javac is for compilation
+
+What is a Java Virtual Machine?
+	as the name suggests, it is virtual machine. Not physically found in folders.
+	JVM is a process.		What is a process? in Task manager, you can see the processes running in a computer.
+	JVM process
+		has lot threads
+			class loaders
+			garbage collector
+
+JDK, JVM, JRE
+
+If i need to install Java in our computer?
+	JDK or JRE?
+	We will install JDK in our system. Because, we need compiler also.
+
+Step1:
+	search for "download java 17" in google.
+	choose oracle official website from the search list
+	choose 17 version of java
+	download installer
+
+	once download is completed,
+	copy/ move the file to "softwares" folder
+
+	double click the installer and follow the steps.
+
+Step 2:
+	create the necessary environment variables:
+	1) in start menu, type environment variables
+		system env var
+		your account env var
+			better choose your account env var
+
+	2) create an env var
+		JAVA_HOME
+		C:\Program Files\Java\jdk-17
+
+	3) in "Path" env var
+		append the following
+			%JAVA_HOME%\bin
+
+Step 3:
+	cmd
+		java -version
+
+java version "17.0.10" 2024-01-16 LTS
+Java(TM) SE Runtime Environment (build 17.0.10+11-LTS-240)
+Java HotSpot(TM) 64-Bit Server VM (build 17.0.10+11-LTS-240, mixed mode, sharing)
+
+-----------------------------------------------
+Learning to write a java code in a text editor
+and then compile and execute in cmd prompt
+is something we need to do now.
+
+Later, we will move to using IDE like
+	Eclipse
+	Spring Tool Suite
+
+---------------------------
+Create a folder for this training purpose
+in your system.
+inside "training" folder
+create a "java" folder
+	Lets create all our java codes inside this folder.
+
+Lets create our first java program:
+	1) start menu, type "Notepad"
+	2) save the file as
+		"App.java"
+
+
+in java, we cannot run a program without a class
+
+public class App
+{
+	public static void main(String []args)
+	{
+		System.out.println("Hello world");
+	}
+}
+
+
+go to cmd prompt where App.java is present
+
+compile:
+	javac App.java
+run:
+	java App
+
+
+Task:
+Write a java program using notepad
+Save and use cmd prompt to compile
+and execute the program
+check the output.
+
+Demo:
+Accept a command line argument and display
+
+public class App
+{
+	public static void main(String []args)
+	{		
+		System.out.println("Hello "+args[0]);
+	}
+}
+
+Task:
+Accept n number of command line arguments, separated by space.
+Display all the command line arguments using any loop.
+
+Hint:
+	every array has length property
+		args.length will give you, the number of arguments provided by the user.
+
+
+public class App
+{
+	public static void main(String []args)
+	{		
+		System.out.print("Hello ");
+		for(String arg : args)
+		{
+			System.out.print(arg+" ");
+		}
+	}
+}
+-----------------------------------------------
+The java class name must be starting with capital letter
+hence the file name also same.
+----------------------------------------------
+Configuring IDEs (Eclipse, IntelliJ IDEA)
+
+I recommend 
+	Eclipse (or) STS	Spring Tool Suite
+
+
+for core java (Java SE) we just need
+	Eclipse for Java developer
+
+but for you to continue learning advanced java (Java EE)
+	you can download
+		Eclipse for Java EE developer
+
+Download Links
+Windows 32-bit | x86_64
+
+choose x86_64
+
+if you download Spring Tool Suite
+then it will allow you to create "Spring boot" projects from File menu itself.
+
+there are 2 types of downloads in eclipse/sts
+
+one is installer.
+	that you download and install
+another is package.
+	that you download and unzip.
+	once unzip, you got a folder
+		that folder contains	eclipse or sts exe
+
+eclipse ee package:
+https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2024-03/R/eclipse-jee-2024-03-R-win32-x86_64.zip
+
+sts:
+https://spring.io/tools
+
+
+
+When we run eclipse,
+it asks us to choose the workspace.
+
+Workspace is a folder
+	where all our projects are created.
+
+-----------------------------------
+Lets create a new 
+	Java Project in eclipse
+
+File -> New -> Java Project
+	untick "create module-info.java" file
+
+	1) Project name
+		12-apr-1
+	2) Use default location
+		it will choose "workspace" location
+	now, the project folder is created inside our workspace
+
+you can see the following folders inside the project folder:
+	src
+	bin
+
+src folder contains all the source code files
+bin folder contains all the class files
+
+Lets create an App.java file
+	right click project -> New -> Class
+		name of the class "App"
+	tick the checkbox for "public static void main"
+
+	click Finish button
+
+Now, we got the class.
+	write necessary code
+
+
+public class App {
+
+	public static void main(String[] args) {
+		System.out.println("Hello world");
+	}
+
+}
+
+
+right click the code
+	run as -> Java Application
+
+
+Look at the output in "Console" window.
+
+Window menu -> show view -> Console
+--------------------------------------------------
+Task:
+Create a java project in eclipse
+add some System.out.println inside the main method
+
+run the code
+check the output in console.
+
+-----------------------------------------
+Conventions used in Java	(guidelines)
+
+class name:
+	Follow PascalCase
+		first letter of every word to be upper case.
+		ex:
+			Employee
+			ContractEmployee
+			ArrayIndexOutOfBoundsException
+	should be a noun
+		a java class name must be a noun. It cannot be a verb
+			
+method name:
+	Follow camelCase
+		very first letter is in lower case. Every next word first letter is in upper case.
+		ex:
+			acceptDetails
+			calculateSimpleInterest
+
+	should be a combination of verb and noun
+			doThis	format
+	
+variables / object names:
+		almost same as method convention but does not follow 	verb+noun at all
+	
+		ContractEmployee rajaSivaKumar;		the first letter is small.
+		RetailCustomer sureshPeter;
+		StringBuilder stringBuilder;
+		Employee employee;
+
+		employee.something();			employee is class or object?? ans: Object
+							because, "e" is small
+
+		variables must be noun.
+		but index variables used in for loops can be shorter like 	i,j,k,etc
+		otherwise, it must be meaningful.
+
+constants:
+		must be in full capitals.
+		ex:
+			final int TOTAL=100;
+			final float AVERAGE_SCORE=12.2f;
+
+
+		in C, C++ const is used. in Java, final is used.
+
+
+operators:
+		full small letters.
+		ex:
+			new
+			instanceof
+
+---------------------------------------
+Hi All - Please click on the link and fill feedback - https://survey.zohopublic.com/zs/BLClpG
+---------------------------------------
+Data types:
+---------------
+List out all data types in java
+
+IMO, data types in java means PRIMITIVE data types.
+all others are just TYPEs. not Data Types.
+
+there are only 8 primitive data types in java:
+boolean		1 bit
+byte		1 byte
+short		2 bytes
+char		2 bytes
+int		4 bytes
+float		4 bytes
+long		8 bytes
+double		8 bytes
+
+
+
+integer family:
+byte
+short
+int
+long
+
+floating point family:
+float
+double
+
+char
+boolean
+
+
+
+char datatype of java uses "Unicode" character set
+ASCII is a character set
+	1 byte representation of any character.
+		in 1 byte, the range is 256 possible values		ascii value 0 to 255
+
+But in java, every character is represented in 2 bytes	unicode format
+	65536 possible values in 2 byte representation
+
+if you use first 1 byte of unicode, then it is	UTF-8		Unicode Text Format 8 bit/ 1 byte representation
+
+We can find the range of any datatype in java coding itself.
+
+
+
+
+public class App {
+
+	public static void main(String[] args) {
+		System.out.println(Byte.MAX_VALUE);
+		System.out.println(Short.MAX_VALUE);
+		System.out.println(Integer.MAX_VALUE);
+		System.out.println(Long.MAX_VALUE);
+		System.out.println(Float.MAX_VALUE);
+		System.out.println(Double.MAX_VALUE);
+	}
+
+}
+
+
+127
+32767
+2147483647				(10 digit)
+9223372036854775807			(19 digit)
+3.4028235E38
+1.7976931348623157E308
+￿
+
+
+public class App {
+
+	public static void main(String[] args) {
+		byte marks=127;
+		marks++;
+		System.out.println(marks); //you expect 128. But we got -128
+		//what will be the output?	-128
+		//	the range of byte is 	-128 to 127
+		// and it is circular.	
+	}
+
+}
+
+output: -128
+
+
+suppose, 
+int has a range	-2147483648 to 2147483647
+
+suppose, if we are not aware of this 
+a person deposits money.
+earlier his balance is
+	2147483647
+
+now he deposits 1000 rupees
+
+and then later he goes to withdraw money. But his a/c is in negative balance.
+VERY DANGEROUS.
+
+ ■²→☺☻
+F
+♦
+
+
+class Employee
+{
+	int mobileNo;		//1234567890		WORKS
+				//9876543210		NOT WORK
+}
+
+
+String mobileNo;		//use regular expression to validate
+
+declare some variables of each primitive data type
+and assign some values
+and check output of these values are same or not
+
+
+number system:
+
+
+
+public class App3 {
+
+	public static void main(String[] args) {
+		int i=010;
+		System.out.println(i);
+	}
+
+}
+
+
+
+Octal:
+	range of octal is between
+		0 and 7
+
+0
+1
+2
+3
+4
+5
+6
+7		after 7, it becomes 			10
+10		means 8 in decimal
+11		means 9 in decimal
+12		10
+13		11
+14		12
+15		13
+16		14
+17		15
+20		16
+
+
+in java a number prefixed with "0" means, it is an octal number.
+in java a number prefixed with "0x" means, it is a hexadecimal number.
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+A	10
+B	11
+C	12
+D	13
+E	14
+F	15
+
+
+public class App4 {
+
+	public static void main(String[] args) {
+		int i=0x10;	//0x prefix means, it is hexa decimal
+		System.out.println(i);
+	}
+
+}
+
+Tell me, how many wrapper classes are there in java language?
+8 wrapper classes.
+
+For every primitive type, a corresponding wrapper class is available
+
+boolean 		Boolean
+char		Character
+byte		Byte
+short		Short
+int		Integer
+long		Long
+float		Float
+double		Double
+
+
+I used these wrappers to find the
+	MIN_VALUE
+	MAX_VALUE
+
+etc.
+
+Primitive data types are value types.
+means,
+	the variable of primitive type
+	can contain only value.
+	it cannot contain
+		reference
+		methods
+
+So, all related methods can be found in
+corresponding wrapper classes.
+
+
+For example,
+	char is a datatype.
+
+i want to check if it contains a number or not.
+
+
+
+public class App5 {
+
+	public static void main(String[] args) {
+		char c='_';	//		\0 means null
+//		System.out.println(c.isLetter());  //NOT POSSIBLE
+	
+		System.out.println(Character.isDigit(c));
+		System.out.println(Character.isLetter(c));
+		System.out.println(Character.isAlphabetic(c));
+	}
+
+}
+
+
+
+Wrappers
+	are reference type version of primitives
+	they are Classes
+	we can create object of wrapper classes.
+
+jdk 1.5 onwards,
+	boxing and unboxing happens automatically.
+
+
+int i=20;
+Integer marks=100;
+i=marks;		//auto unboxing
+
+marks=i;		//auto boxing
+
+What is boxing?
+	primtive to object
+	is wrapping a primitive inside an object
+
+
+
+class Integer
+{
+	int  i;
+}
+//can we see the above as WRAPPING int inside a class/object.
+
+Gift boxing = git wrapping
+
+by doing that, it becomes reference type.
+
+void swap(int i, int j)
+{
+	int temp=i;
+	i=j;
+	j=temp;
+}
+
+i and j are swapped.
+
+but
+swap(a,b);		// here we call swap method using actual paramters a and b
+a and b are not swapped.
+
+because,
+	int is a value type.
+	hence, swap(a,b)		passes value of a & b to i and j
+
+	when i & j are swapped, 	a & b are unaffected.
+
+swap(Integer i, Integer j)		????	Surprisingly, the values are copied. Because of auto unboxing
+
+class MyInt
+{
+	int no;
+}
+
+public class App6 {
+
+	public static void swap(MyInt i, MyInt j)
+	{
+		MyInt temp=new MyInt();
+		temp.no=i.no;
+		i.no=j.no;
+		j.no=temp.no;
+		System.out.printf("i=%d\tj=%d\n",i.no,j.no);
+	}
+	
+	public static void main(String[] args) {
+		MyInt a=new MyInt();
+		a.no=20;
+		MyInt b=new MyInt();
+		b.no=30;
+		swap(a,b);
+		System.out.printf("a=%d\tb=%d",a.no,b.no);
+	}
+
+}
+
+
+problem:
+------------
+	swap(int i, int j)		i and j are formal parameters
+
+calling this method
+	swap(a,b)			when i and j are swapped, a and b are not affected.
+
+problem was because, int is a primitive type. So values are copied.
+
+	swap(MyInt i, MyInt j)
+	swap(a,b)			a and b are reference types
+
+object of any class is a reference type.	So, reference of a and b are copied to i and j.
+	so there are not 4 objects now.		a and b are objects and 	i and j are pointer to them.
+		there are only 2 objects
+
+	when i and j are swapped, 	a and b are affected.
+
+
+
+class MyInt
+{
+	int no;
+}
+
+public class App6 {
+
+/*
+void swap(int i, int j)
+{
+	int temp=i;
+	i=j;
+	j=temp;
+}
+*/
+
+	public static void swap(MyInt i, MyInt j)
+	{
+		MyInt temp=new MyInt();
+		temp.no=i.no;
+		i.no=j.no;
+		j.no=temp.no;
+		System.out.printf("i=%d\tj=%d\n",i.no,j.no);
+	}
+	
+	public static void main(String[] args) {
+		MyInt a=new MyInt();
+		a.no=20;
+		MyInt b=new MyInt();
+		b.no=30;
+		swap(a,b);
+		System.out.printf("a=%d\tb=%d",a.no,b.no);
+	}
+
+}
+
+----------------------------------------
+Operators:
+	most of you already know
+	+ is used to add 
+
+arithmetic operators:
+Comparison / Relational operators:
+Assignment operators:
+Logical operators:
+Ternary operator:
+Shift operators:
+operators:
+
+
+some operators are		(in terms of number of operands)
+	unary
+	binary
+	ternary
+
+
+Task:
+Identify the list of operators in java and their purpose.
+------------------------------
+BODMAS
+	always apply
+apart from that there are so many operators in java
+
+()
+[]
+·
+++
+--
+++
+--
++
+-
+!
+~
+(type)
+*
+/
+%
++
+-
+<<
+>>
+>>>
+<
+<=
+>
+>=
+instanceof
+==
+!=
+&
+^
+|
+&&
+||
+? :
+=
++=
+-=
+*=
+/=
+%=
+
+
+()
+int ex=(2+3)*4/2-5;
+this is normal bracket to group operations and precide.
+
+[]
+	for arrays
+
+.
+	is used to access the members of an object
+
+	obj.method();
+	obj.var=20;
+
+++
+--
+	
+		int i=20;
+		i++;
+		System.out.println(i); 		//what is the output?
+
+i++		will increment
+++i		will increment
+
+the difference between
+	prefix and postfix is only when this operator is combined with others in an expression.
+ex:
+	i++;
+	++i;	
+		works same
+	but
+	
+	j=i++;	//assignment first and increment next
+
+	j=++i;	//increment first and then assignment next
+
+	3*i++;	//since ++ is postfix, it will increment only after multiply by 3 is completed
+
+
+casting:
+	when i assign a value
+	x=y;
+	if x and y are same data type or type, then absolutely no issues.
+	issues arise when x and y are different (data) types.
+
+	in certain scenarios, it is possible to 
+		cast
+		convert them
+
+you need to understand, when to cast and when to convert.
+
+between numeric types, you can cast.
+between co-variant types, you can cast.
+	what is co-variant type?
+		types under same inheritance hierarchy
+		super class and sub class are co-variant types.
+
+between different categories,
+	ex:
+		numeric to String
+		String to numeric
+	we can convert
+		conversion functions are there in corresponding wrapper classes.
+
+	int i=Integer.parseInt("100");
+
+
+	implicit casting happens when the target of assignment is wider than the source.
+
+x=y
+	target is x
+	source is y
+
+int score=20;
+long marks=i;		//target is wider (long). source is narrow(int). So implicit casting.
+
+		int score=20;
+		long marks=score;		//implict casting
+		score=(int) marks;		//explicit casting
+		
+
+		marks=1234567890;
+		score=(short) marks;	//loss of precision
+		System.out.println(score);
+
+
+int i=15;
+		System.out.println((float)i/2);
+		
+
+System.out.println(i/2.0f);
+either of the operands of / is float, 
+the result is also float.
+
+How i convert a number  into String?
+	String str=i+"";
+
++ operator do addition, if both operands are numbers
++ operator do concatenation, if either operand is String
+
+
+		String x="2";
+		String y="3";
+		System.out.println(x+y);		//23
+
+
+%
+	perform a division and return the reminder
+
+	when you want a number within a range from 0 to n-1
+	x%n	
+		returns a number between 0 and n-1
+
+<< shift operator.
+if you convert the operand as binary digitis
+2 is the operand
+binary of 2 is	00000010
+left shift it by 1	00000100		=> 4
+
+every left shift is equivalent to 		multiply by 2
+every right shift is equivalent to 		divide by 2
+
+4:
+00000100		>>1	
+00000010		is equivalent to 2
+
+
+example:
+		int a=4;
+		System.out.println(a>>1);		//2
+		
+		a=2;
+		System.out.println(a<<1);		//4
+
+--------------------------------------
+<
+<=
+>
+>=
+!=
+==
+
+difference between = and ==
+	= is used to assign
+	== is used to check if both operands are equal or not.
+
+== operator is overloaded.
+	a==b
+		what happens?
+			if a and b are primitive (value) types, then their values are compared.
+			if a and b are reference (object) types, then their references are compared.
+
+
+
+String class,
+Wrapper classes are peculiar when it comes to ==
+because, the wrappers automatically unwrap / unbox 
+
+
+	Integer i=new Integer(20);
+	Integer j=new Integer(20);		
+	System.out.println(i==j);		//false
+
+	int i = 20;
+	int j = 20;
+	System.out.println(i == j);	//true
+
+		String str1=new String("Hello");
+		String str2=new String("Hello");
+		System.out.println(str1==str2);		//false
+
+		String str1="hello";
+		String str2="hello";
+		String str3=str2;		//you would agree that str2 and str3 referes to same memory
+		System.out.println(str1==str2);		//true
+
+
+		String str1="hello";
+		String str2="hello";
+		System.out.println(str1.equals(str2));		//true
+
+whenever you want to check if 2 strings are equal or not,
+		better use equals() method
+		and not the == operator
+
+equals method cannot be used for primitives. Primitives does not have member functions.
+equals method must be used when comparing the values of 2 objects
+
+instanceof operator
+ex:
+	a instanceof b
+		returns true if a is an instance of b
+		or is instance of its sub class
+
+		String str="raja";
+		System.out.println(str instanceof Object);
+
+
+System.out.println(true ^ false);		//XOR operator
+
+
+
+
+
+		int a=60;
+		System.out.println((a>50)?"Pass":"Fail");		//ternary operator
+
+
+a=20;
+a+=1;		//		a=a+1
+a-=2		//		a=a-2
+a/=2		//		a=a/2
+
+-----------------------------------------
+How to get input from user?
+	Scanner class of java.util package is used to get input from the user in cmd / console
+Scanner sc=new Scanner(System.in);
+		
+Scanner offers lot of methods
+	next()		returns a String input upto any delimiter
+			a delimiter can be <<carriage return>> (enter key) (new line) space or tab space etc
+	nextLine()		returns a String input upto new line enter
+	nextInt		returns int 
+	nextFloat
+	nextLong
+	nextDouble
+	
+
+Dice Game I
+
+Each player will be allowed to throw  a dice 2 times. The points for each player will be calculated as follows :
+If the values thrown are different, the points scored is equal to the sum of the 2 values.
+If the values thrown are the same, the points scored is equal to double the sum of the 2 values.
+
+Write a program to calculate the points scored by a player.
+
+Input and Output Format:
+
+Input consists of 2 integers. The valid range of inputs is from 0 to 6. [ Both 0 and 6 inclusive]
+Output the points scored. In case of invalid inputs, print “Invalid Input”.
+
+Refer sample input and output for formatting specificaions.
+
+[All text in bold corresponds to input and the rest corresponds to output.]
+Sample Input and Output 1:
+
+Enter Value 1:
+5
+Enter Value 2:
+6
+The points scored is 11
+
+Sample Input and Output 2:
+
+Enter Value 1:
+5
+Enter Value 2:
+5
+The points scored is  20
+
+Sample Input and Output 3:
+
+Enter Value 1:
+8
+Enter Value 2:
+6
+Invalid Input 
+
+
+import java.util.Scanner;
+
+public class App {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter Value 1:");
+		int value1=sc.nextInt();
+		System.out.println("Enter Value 2:");
+		int value2=sc.nextInt();
+		if(value1<0 ||value1>6 ||value2<0 ||value2>6)
+		{
+			System.out.println("Invalid Input");
+			System.exit(0);
+		}
+		
+		//program continues, if value1 and value2 are valid
+		int result=value1+value2;
+		
+		if(value1==value2)
+		{
+			result*=2;
+		}
+		
+		System.out.println("The points scored is "+result);
+	}
+}
+--------------------------------------------
+Step1:
+	find the sum of value1 and value2
+
+Step2:
+	the abs difference between 8 and sum	(diff)
+
+Step3:
+	check if the sum is <8
+		then print the diff
+	else
+		then print the double of the diff
+
+-------------------------------------------------------
+Control Flow Statements (if, switch, loops - for, while, do-while)
+
+if statement
+
+in c, c++ language
+	if(0)		//this is possible	
+	if(1)		//anything other than 0 is true 
+but in java language, this is not possible
+	if statement expects a boolean expression
+	if(true)
+	if(false)
+
+	if(expression that returns true or false is fine)
+
+{} set brackets.
+	It is always good practise to use {} 
+	but "if" works without {} also.
+
+
+Look at the below example:
+		int i=20;
+		if(i<50)
+			System.out.println("High");
+		else
+			System.out.println("Low");
+
+
+The above code works fine. But good practise is to use {}
+		int i=20;
+		if(i<50)
+		{
+			System.out.println("High");
+		}
+		else
+		{
+			System.out.println("Low");
+		}
+
+----------------------
+Look at the below code:
+		int i=20;
+		if(i==0)
+			i=50;
+		i*=100;
+
+i am not using {}
+
+int this case,
+			i=50;
+this i=50 that line only belongs to true part of if
+i*=100 is executed even if condition is true or false.
+
+else
+	else is used to execute some code when if condition is false
+
+------------------------
+else if
+	there can be many else if for an if
+
+int i=20;
+		if(i>=90)
+		{
+			System.out.println("Excellent");
+		}else if(i>=80)
+		{
+			System.out.println("Good");
+		}else if(i>=70)
+		{
+			System.out.println("Fair");
+		}
+		else if(i>=50)
+		{
+			System.out.println("Pass");
+		}
+		else
+		{
+			System.out.println("Fail");
+		}
+
+
+
+if one condition is true,
+then all the below else parts are skipped
+
+nested if vs if with logical operators.
+
+if( marks>=0 && marks<=100 )
+{
+	//valid mark
+}
+---------------------versus---------------------------------
+if(marks>=0)
+{
+	if(marks<=100)
+	{
+		//valid mark
+	}
+}
+
+
+How do you find if a number is a 2 digit number?
+	num>9 && num<100		is a 2 digit number
+
+but, irrespective of positive or negative number, how do you check?
+	first get the absolute value of the num
+	Math.abs(num)	will return absolute value of the number.
+	if you do not know Math.abs
+	still, you can first check if the number
+	is <0?	then multiply it by -1
+	in that way you will get the abs value of any number.
+
+	then apply simple algorithm on that.
+
+
+Introductory Algebra I
+One of the assignments given to the kids in the Introductory Algebra class is to write one 2-digit positive number and one 2-digit negative number. They can write the numbers in any order.
+All the kids have written 2 numbers each.
+Can you write a program to ease out the teacher's task?
+
+Input and Output Format:
+
+Input consists of 2 integers. A valid input should contain only 2 digits. If any of the integers is not a 2-digit number, then the input is invalid.
+
+Output is a string.  Output is either “Correct” or “Incorrect” or “Invalid Input”.
+
+Refer sample input and output for formatting specificaions.
+
+[All text in bold corresponds to input and the rest corresponds to output.]
+
+Sample Input and Output 1:
+
+Enter Value 1:
+-51
+Enter Value 2:
+60
+Correct
+
+Sample Input and Output 2:
+
+Enter Value 1:
+31
+Enter Value 2:
+35
+Incorrect
+
+Sample Input and Output 3:
+
+Enter Value 1:
+3
+Enter Value 2:
+-35
+Invalid Input 
+
+Solution:
+--------------
+import java.util.Scanner;
+
+public class App {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter Value 1");
+		int value1=sc.nextInt();
+		System.out.println("Enter Value 2");
+		int value2=sc.nextInt();
+		
+		int x=Math.abs(value1);
+		int y=Math.abs(value2);
+		
+		if(x<10 || x>99 || y<10 || y>99)
+		{
+			System.out.println("Invalid Input");
+			System.exit(0);
+		}
+		
+		//continue if it is valid range
+		//we use xor here
+		if(value1<0 ^ value2<0)
+		{
+			System.out.println("Correct");
+		}else
+		{
+			System.out.println("Incorrect");
+		}
+	}
+
+}
+-------------------------
+Percentage of Runs
+Sam is a cricket freak, who loves to collect statistics about the matches. Suppose, a batsman scored X runs which included Y fours and Z sixes, Sam wants to calculate the  percentage of the total score he made by running between the wickets.
+Write a program to help Sam .
+Input Format:
+First input is an integer X that denotes the total runs scored.
+Second input is an integer Y that denotes the  number of fours he has scored.
+Third input is an integer Z that denotes the  number of sixes he has scored.
+[Note: Assume all inputs are valid.] 
+Output Format:
+Output is a double value that denotes the percentage of runs he made by running between the wickets(rounded off to 2 decimal places).
+Sample Input 1:
+110
+3
+8
+Sample Output 1:
+45.45
+Sample Input 2:
+60
+2
+1
+Sample Output 2:
+76.66
+
+Explanation for sample 1:
+Total Runs = 110
+No. of Fours = 3
+No. of sixes = 8
+Total runs scored by boundaries = 4*3 + 8*6 = 60
+Therefore, runs scored by running between the wickets = 110 - 60 = 50
+Percentage scored by running =(50/110)*100 =  45.45 
+
+-------------------------------------
+//how to display only 2 digits precison?
+		
+1) round approach
+	Math.round()	which will always return int
+
+	multiply by 100, then 
+	Math.round
+	then divide by 100
+
+45.454544
+	45.454544*100		=	4545.4544
+	Math.round(4545.4544)	=	4545.0
+	4545.0/100			=	45.45
+
+2) String.format("%.2f",x);		returns a String 	with 2 digits precision
+	then convert String to float	Float.parseFloat
+
+3) DecimalFormat
+	try this in your free time.
+
+		percentage*=100;
+		percentage=Math.round(percentage);
+		percentage/=100;
+		System.out.println(percentage);
+		
+		
+		String per=String.format("%.2f", percentage);
+		percentage=Float.parseFloat(per);
+		System.out.println(percentage);
+
+---------------------------------
+Profit Share
+Ramu, Gopu and Samu are three friends who own a fruit shop. All three have invested certain amount for starting the shop. They share the profit proportionate to the ratio of the shares they have invested. Given the Profit amount and the ratio of shares of Ramu,Gopu and Samu ,write a program to find the amount of profit that will go to Ramu, Gopu and Samu.
+
+Input Format:
+First line is an integer that denotes the Profit Amount.
+Second line consists of 3 Space separated integers that denote the ratio values of Ramu,Gopu,Samu respectively
+
+Output Format:
+A double value that denotes the Ramu's profit amount.
+A double value that denotes the  Gopu's profit amount.
+A double value that denotes the  Samu's profit amount.
+[Note : The output values are rounded off to 2 decimal places]
+
+Sample Input 1:
+10000
+2 4 4
+
+Sample Output 1:
+2000.00
+4000.00
+4000.00
+
+Sample Input 2:
+25000
+4 5 6
+
+Sample Output 2:
+6666.67
+8333.33
+10000.00 
+
